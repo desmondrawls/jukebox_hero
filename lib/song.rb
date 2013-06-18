@@ -18,3 +18,6 @@ class Song
   end
 
 end
+
+
+library = []
