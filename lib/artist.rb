@@ -2,7 +2,7 @@ require_relative 'song'
 require_relative 'genre'
 
 class Artist
-  attr_accessor :name, :songs, :genres
+  attr_accessor :name, :song, :genre
 
   ARTISTS = []
 
@@ -10,8 +10,8 @@ class Artist
 
   def initialize
     ARTISTS << self
-    self.songs = []
-    self.genres = []
+    self.song = []
+    self.genre = []
   end
 
   def self.reset_artists
@@ -27,13 +27,13 @@ class Artist
   end
 
   def songs_count
-    self.songs.count
+    self.song.count
   end
 
-  def add_song(song)
-    self.songs << song
-    self.genres << song.genre
-    song.genre.artists << self if song.genre && !(song.genre.artists.include?(self)) 
+  def add_song(songdude)
+    self.song << songdude
+    self.genre << songdude.genre
+    songdude.genre.artist << self if songdude.genre && !(songdude.genre.artist.include?(self)) 
   end
 
 end

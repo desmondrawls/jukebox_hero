@@ -124,10 +124,11 @@ private
 #------------support for executions------------#
   #called from list only
   def navigate(category)
-    if @library.empty?
+    if @library == []
       @library = category.all
     else
-      @library = @library.category.downcase
+      filter = category.to_s.downcase
+      @library = @library.send(filter)
     end
   end
 
