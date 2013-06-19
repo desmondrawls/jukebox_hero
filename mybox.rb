@@ -3,7 +3,7 @@ require_relative 'user'
 require_relative 'parser'
 
 class Jukebox
-  COMMANDS = ["list artists", "list songs", "list genres", "select #" "play", "clear"]
+  COMMANDS = ["list artists", "list songs", "list genres", "select", "play", "clear"]
 
   #attr_accessor :users :current_user :songs :command :current_listen
 
@@ -91,7 +91,7 @@ private
     else
       puts "The commands are:" + Commands::list
     end
-    @library.each_with_index {|member, index| puts index, member.name}
+    @library.each_with_index {|member, index| puts index.to_s + "." + member.name}
     prompt("list")
   end
 
@@ -103,6 +103,7 @@ private
     puts "please rank it 1-5"
     response = gets.chomp
     rank(response)
+    @library = []
     prompt
   end
 
