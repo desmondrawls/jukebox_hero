@@ -12,9 +12,17 @@ def parser(data)
     throwaway_song.genre = throwaway_genre
     throwaway_genre.name = song.split("[").last.split("]").first
 
-    throwaway_artist = Artist.new
-    throwaway_artist.name = song.split(" - ").first.to_s
-    throwaway_artist.add_song(throwaway_song)
+    
+    artist_name = song.split(" - ").first.to_s
+    artist = Artist.all.select{|artist| artist.name == artist_name}
+    if artist == nil
+        artist = Artist.new
+        artist.name = artist_name
+        artist.add_song(throwaway_song)
+    else
+        
+    end
+    artist.add_song(throwaway_song)
 
     throwaway_song.artist = throwaway_artist
   end
