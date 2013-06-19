@@ -14,22 +14,19 @@ def parser(data)
 
     
     artist_name = song.split(" - ").first.to_s
-    artist = Artist.all.select{|artist| artist.name == artist_name}
+    artist = Artist.all.select{|artist| artist.name == artist_name}.first
     if artist == nil
         artist = Artist.new
         artist.name = artist_name
         artist.add_song(throwaway_song)
     else
-        
+        artist.add_song(throwaway_song)
     end
-    artist.add_song(throwaway_song)
 
-    throwaway_song.artist = throwaway_artist
+    throwaway_song.artist = artist
   end
 end
 
-p parser(our_data)
-
-p Song.all
+parser(our_data)
 
 #What should each song unit look like
