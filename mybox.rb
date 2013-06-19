@@ -73,6 +73,7 @@ private
       clear
     else
       puts "The commands are: play, select, etc"
+      prompt
     end
   end
 
