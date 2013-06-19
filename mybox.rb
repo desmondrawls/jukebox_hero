@@ -37,7 +37,7 @@ class Jukebox
   def prompt(caller = nil)
     case caller
     when "list"
-      puts "please select by name"
+      puts "please select by number"
     # when "select"
     #   puts ""
     else
@@ -62,7 +62,8 @@ private
         play(@command)
       # end
     when "select"
-      if @library.empty? || @library.length.even?
+      if @library.empty? 
+        # || @library.length.even?
         puts "that doesn't make any sense"
         prompt
       else

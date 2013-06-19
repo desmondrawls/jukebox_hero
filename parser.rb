@@ -8,9 +8,17 @@ def parser(data)
   data.each do |song|
     throwaway_song = Song.new
     throwaway_song.name = song.split(" - ").at(1).split("[").first
-    throwaway_genre = Genre.new
-    throwaway_song.genre = throwaway_genre
-    throwaway_genre.name = song.split("[").last.split("]").first
+    
+    genre_name = song.split("[").last.split("]").first
+    genre = Genre.all.select{|genre| genre.name == genre_name}.first
+    if genre
+        throwaway_song.genre = genre
+    else
+        genre = Genre.new
+        genre.name = genre_name
+        throwaway_song.genre = genre
+    end
+    
 
     
     artist_name = song.split(" - ").first.to_s
